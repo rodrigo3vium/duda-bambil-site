@@ -1,0 +1,872 @@
+/* ============================================
+   GERENCIAMENTO DE PELE — LANDING PAGE
+   Estilos isolados via CSS Module.
+   Variáveis definidas no .page sobrescrevem
+   o globals.css por cascata de CSS custom props.
+   ============================================ */
+
+.page {
+  --bg: #ece8e1;
+  --bg-alt: #ddd7cc;
+  --bg-dark: #1a1a1a;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4744;
+  --ink-mute: #6b6863;
+  --line: rgba(26, 26, 26, 0.12);
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Tipografia (sobrescreve globals) --- */
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.page h1 { font-size: clamp(2.75rem, 6.5vw, 5.5rem); }
+.page h2 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+.page h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+
+.page p {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+/* --- Layout --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.containerSm {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+}
+
+/* --- CTA --- */
+.cta {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 22px 52px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.cta:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.ctaLight {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.ctaLight:hover {
+  background: #fff;
+}
+
+/* --- Header --- */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 0;
+  z-index: 10;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+/* --- Hero --- */
+.hero {
+  min-height: 100vh;
+  padding: 140px 0 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.heroText h1 {
+  margin-bottom: 32px;
+}
+
+.heroText h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 48px;
+  color: var(--ink-soft);
+  max-width: 520px;
+}
+
+.heroImg {
+  aspect-ratio: 4/5;
+  /* TODO: replace with url('/images/hero-duda.jpg') */
+  background: var(--bg-alt) center / cover;
+  border-radius: 4px;
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  flex-wrap: wrap;
+}
+
+/* --- Modificadores de seção --- */
+.sectionAlt {
+  background: var(--bg-alt);
+}
+
+.sectionDark {
+  background: var(--bg-dark);
+  color: var(--bg);
+}
+
+.sectionDark h2,
+.sectionDark h3 {
+  color: var(--bg);
+}
+
+.sectionDark p {
+  color: rgba(236, 232, 225, 0.75);
+}
+
+.sectionDark .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+/* --- Dores --- */
+.pains {
+  padding: 120px 0;
+  text-align: center;
+}
+
+.pains h2 {
+  margin-bottom: 24px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.painsSub {
+  max-width: 600px;
+  margin: 0 auto 80px;
+  font-size: 1.125rem;
+}
+
+.painsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.pain {
+  padding: 40px 32px;
+  text-align: left;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.painNum {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+
+.pain p {
+  font-size: 1.0625rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+/* --- Transformação --- */
+.transform {
+  padding: 140px 0;
+}
+
+.transform h2 {
+  text-align: center;
+  margin-bottom: 80px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.transformGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.transformCol {
+  padding: 56px 48px;
+}
+
+.transformCol:first-child {
+  border-right: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.transformCol h3 {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.transformCol.depois h3 {
+  color: var(--bg);
+}
+
+.transformCol ul {
+  list-style: none;
+}
+
+.transformCol li {
+  padding: 16px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(236, 232, 225, 0.08);
+  color: rgba(236, 232, 225, 0.7);
+}
+
+.transformCol.depois li {
+  color: var(--bg);
+}
+
+.transformCol li:last-child {
+  border-bottom: none;
+}
+
+/* --- Módulos --- */
+.modulos {
+  padding: 140px 0;
+}
+
+.modulosHeader {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.modulosHeader h2 {
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modulosHeader p {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+}
+
+.modulosList {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.modulo {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.modulo:last-child {
+  border-bottom: none;
+}
+
+.moduloNum {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-style: italic;
+  color: var(--ink-mute);
+  line-height: 1;
+}
+
+.modulo h3 {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+.modulo p {
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.modulo ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.modulo ul li {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+
+.modulo ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ink-mute);
+}
+
+.moduloBonus {
+  background: var(--bg);
+  padding: 48px;
+  border: 1px solid var(--line);
+  margin-top: 48px;
+}
+
+.moduloBonus .eyebrow {
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+/* --- Sobre --- */
+.sobre {
+  padding: 120px 0;
+}
+
+.sobreGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sobreImg {
+  aspect-ratio: 4/5;
+  /* TODO: replace with url('/images/about-duda.jpg') */
+  background: var(--bg-alt) center / cover;
+  border-radius: 4px;
+}
+
+.sobreText h2 {
+  margin-bottom: 32px;
+}
+
+.sobreText p {
+  font-size: 1.0625rem;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.sobreSig {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-top: 32px;
+  color: var(--ink);
+}
+
+/* --- Pra quem é --- */
+.target {
+  padding: 140px 0;
+}
+
+.target h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.targetSub {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 80px;
+  font-size: 1.125rem;
+}
+
+.targetGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.targetCol h3 {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.targetCol ul {
+  list-style: none;
+}
+
+.targetCol li {
+  padding: 16px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.sim li::before {
+  content: "✓";
+  color: var(--ink);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.nao li::before {
+  content: "✗";
+  color: var(--ink-mute);
+  flex-shrink: 0;
+}
+
+.nao li {
+  color: var(--ink-mute);
+}
+
+/* --- Oferta --- */
+.oferta {
+  padding: 140px 0;
+}
+
+.ofertaCard {
+  background: var(--bg-dark);
+  color: var(--bg);
+  padding: 80px 64px;
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.ofertaCard .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.ofertaCard h2 {
+  color: var(--bg);
+  margin-bottom: 32px;
+}
+
+.ofertaIncludes {
+  list-style: none;
+  text-align: left;
+  margin: 48px 0;
+  padding: 32px 0;
+  border-top: 1px solid rgba(236, 232, 225, 0.15);
+  border-bottom: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.ofertaIncludes li {
+  padding: 12px 0;
+  color: rgba(236, 232, 225, 0.85);
+  font-size: 1rem;
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.ofertaIncludes li::before {
+  content: "+";
+  color: rgba(236, 232, 225, 0.5);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.ofertaPreco {
+  margin: 48px 0 32px;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(236, 232, 225, 0.5);
+  margin-bottom: 16px;
+}
+
+.parcelas {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: rgba(236, 232, 225, 0.7);
+  margin-bottom: 8px;
+}
+
+.valor {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--bg);
+}
+
+.valor sup {
+  font-size: 1.5rem;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+.obs {
+  font-size: 0.85rem;
+  color: rgba(236, 232, 225, 0.6);
+  margin-top: 16px;
+}
+
+.garantia {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: rgba(236, 232, 225, 0.6);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Garantia block --- */
+.guaranteeBlock {
+  text-align: center;
+  padding: 80px 0;
+  background: var(--bg-alt);
+}
+
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+  color: var(--ink);
+}
+
+.guaranteeBlock h2 {
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guaranteeBlock p {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+}
+
+/* --- FAQ --- */
+.faq {
+  padding: 120px 0;
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.faqList {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--line);
+  padding: 32px 0;
+}
+
+.faqItem h3 {
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.faqItem p {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* --- CTA final --- */
+.final {
+  text-align: center;
+  padding: 160px 0;
+  background: var(--bg-dark);
+  color: var(--bg);
+}
+
+.final .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.final h2 {
+  color: var(--bg);
+  margin-bottom: 32px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.final p {
+  color: rgba(236, 232, 225, 0.7);
+  font-size: 1.125rem;
+  margin-bottom: 48px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.finalMeta {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: rgba(236, 232, 225, 0.5);
+}
+
+/* --- Próximo passo (mentoria teaser) --- */
+.nextStep {
+  padding: 80px 0;
+  text-align: center;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.nextStep .eyebrow {
+  margin-bottom: 16px;
+}
+
+.nextStep p {
+  max-width: 580px;
+  margin: 0 auto 24px;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.nextStep a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+
+/* --- Footer --- */
+.footer {
+  background: var(--bg-dark);
+  padding: 64px 0;
+  text-align: center;
+  border-top: 1px solid rgba(236, 232, 225, 0.1);
+}
+
+.footer .logo {
+  color: var(--bg);
+}
+
+.footer p {
+  color: rgba(236, 232, 225, 0.5);
+  font-size: 0.85rem;
+  margin-top: 24px;
+}
+
+.footer a {
+  color: rgba(236, 232, 225, 0.7);
+  text-decoration: none;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 860px) {
+  .hero {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+
+  .heroGrid,
+  .sobreGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .heroImg,
+  .sobreImg {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .painsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .transformGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .transformCol:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(236, 232, 225, 0.15);
+  }
+
+  .transformCol {
+    padding: 40px 32px;
+  }
+
+  .targetGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .modulo {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pains,
+  .sobre,
+  .faq {
+    padding: 80px 0;
+  }
+
+  .transform,
+  .modulos,
+  .target,
+  .oferta {
+    padding: 80px 0;
+  }
+
+  .ofertaCard {
+    padding: 56px 32px;
+  }
+
+  .valor {
+    font-size: 3.5rem;
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .containerSm {
+    padding: 0 24px;
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+  }
+
+  .cta {
+    padding: 18px 36px;
+    font-size: 0.85rem;
+  }
+}

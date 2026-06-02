@@ -1,0 +1,319 @@
+:root {
+  --bg: #0e0d0b;
+  --bg-soft: #181613;
+  --bg-card: #1f1c18;
+  --gold: #c9a06b;
+  --gold-mute: rgba(201, 160, 107, 0.6);
+  --ink: #f4efe6;
+  --ink-soft: rgba(244, 239, 230, 0.75);
+  --ink-mute: rgba(244, 239, 230, 0.5);
+  --line: rgba(244, 239, 230, 0.1);
+  /* Fontes otimizadas via next/font (definidas em app/layout.tsx) */
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  /* TODO: HERO_IMG — troque o gradiente abaixo por url('/hero.jpg') quando tiver a imagem. */
+  --hero-image: linear-gradient(135deg, #2a241d 0%, #14110d 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+/* HEADER */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 0;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logo .dot {
+  color: var(--gold);
+  margin: 0 4px;
+}
+
+/* HERO */
+.hero {
+  min-height: 90vh;
+  padding: 140px 0 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background: var(--hero-image) center / cover;
+  opacity: 0.55;
+  mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.hero-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.125rem;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  margin-bottom: 32px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.hero-lead {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 540px;
+}
+
+/* SECTION */
+section {
+  padding: 120px 0;
+}
+
+/* CARDS */
+.produtos {
+  background: var(--bg-soft);
+}
+
+.produtos-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.produtos-header h2 {
+  margin-bottom: 16px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  padding: 56px 44px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+}
+
+.card:hover {
+  border-color: var(--gold-mute);
+  transform: translateY(-4px);
+}
+
+.card-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.card h3 {
+  margin-bottom: 16px;
+}
+
+.card-promise {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.card-arrow {
+  font-family: var(--serif);
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-arrow::after {
+  content: "→";
+  transition: transform 0.2s;
+}
+
+.card:hover .card-arrow::after {
+  transform: translateX(6px);
+}
+
+/* CONTATO */
+.contato {
+  text-align: center;
+  background: var(--bg);
+}
+
+.contato p {
+  max-width: 480px;
+  margin: 0 auto 40px;
+}
+
+.contato-link {
+  display: inline-block;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-mute);
+  padding-bottom: 6px;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  margin: 0 16px;
+}
+
+.contato-link:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* FOOTER */
+.footer {
+  padding: 48px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.footer-meta {
+  color: var(--ink-mute);
+  font-size: 0.8rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 720px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+  .hero::before {
+    width: 100%;
+    opacity: 0.2;
+  }
+  section {
+    padding: 80px 0;
+  }
+  .container {
+    padding: 0 24px;
+  }
+  .card {
+    padding: 40px 32px;
+    min-height: auto;
+  }
+}
