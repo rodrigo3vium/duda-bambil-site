@@ -54,15 +54,12 @@ export default function GerenciamentoDePelePage() {
             <div className={styles.heroText}>
               <div className={styles.eyebrow}>Curso de Gerenciamento de Pele</div>
               <h1>
-                De R$80 numa limpeza
-                <br />a <em>R$2.000</em> num plano
-                <br />
-                de tratamento.
+                Você não precisa de mais cursos de técnicas. Você precisa
+                aprender a transformar clientes em <em>pacientes fiéis</em>.
               </h1>
               <p className={styles.lead}>
-                O método completo para esteticistas que querem parar de trocar
-                tempo por dinheiro e construir um consultório com agenda enxuta,
-                ticket alto e pacientes que voltam.
+                Aprenda a gerenciar peles com estratégia e posicionamento, mesmo
+                que hoje você ainda dependa de sessões avulsas.
               </p>
               <a href="#oferta" className={styles.cta}>
                 Ver o curso completo
@@ -371,10 +368,8 @@ export default function GerenciamentoDePelePage() {
           <div className={styles.sobreGrid}>
             <div className={styles.sobreImg} aria-label="Duda Bambil" />
             <div className={styles.sobreText}>
-              <div className={styles.eyebrow}>Quem é a Duda</div>
-              <h2>
-                Sou esteticista. Não biomédica, não farmacêutica.
-              </h2>
+              <div className={styles.eyebrow}>Quem sou?</div>
+              <h2>Prazer, sou a Duda Bambil</h2>
               <p>
                 Trabalho com a estética que toda profissional aprende na
                 faculdade — e que quase ninguém sabe transformar em negócio

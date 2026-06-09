@@ -157,6 +157,7 @@
 }
 
 .heroText h1 {
+  font-size: clamp(1.7rem, 2.3vw, 1.85rem);
   margin-bottom: 32px;
 }
 
@@ -175,8 +176,7 @@
 
 .heroImg {
   aspect-ratio: 4/5;
-  /* TODO: replace with url('/images/hero-duda.jpg') */
-  background: var(--bg-alt) center / cover;
+  background: var(--bg-alt) url("/images/hero-duda.jpg") center / cover;
   border-radius: 4px;
 }
 
