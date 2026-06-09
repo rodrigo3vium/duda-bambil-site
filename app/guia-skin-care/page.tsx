@@ -34,9 +34,8 @@ export default function GuiaSkinCare() {
             <div className="hero-text">
               <div className="eyebrow">Guia Editável de Skincare</div>
               <h1>
-                Pare de fazer<br />
-                orientação de home care<br />
-                <em>às 11 da noite no Canva.</em>
+                Guia de Skincare editável<br />
+                para <em>Profissionais da estética</em>
               </h1>
               <p className="lead">
                 O guia editável que você baixa, edita com a sua marca, salva em PDF e entrega pra
@@ -54,7 +53,7 @@ export default function GuiaSkinCare() {
                 <span>Personalizável com sua marca</span>
               </div>
             </div>
-            <div className="hero-mockup" aria-label="Mockup do guia editável" />
+            <div className="hero-mockup" aria-label="Duda Bambil" />
           </div>
         </div>
       </section>

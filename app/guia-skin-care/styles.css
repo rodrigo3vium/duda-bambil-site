@@ -133,7 +133,7 @@
   align-items: center;
 }
 
-.guia-page .hero-text h1 { margin-bottom: 32px; }
+.guia-page .hero-text h1 { font-size: clamp(1.8rem, 3vw, 2.2rem); margin-bottom: 32px; }
 .guia-page .hero-text h1 em { font-style: italic; font-weight: 400; }
 
 .guia-page .lead {
@@ -146,7 +146,7 @@
 
 .guia-page .hero-mockup {
   aspect-ratio: 4/5;
-  background: var(--bg-alt) center/cover;
+  background: var(--bg-alt) url("/images/hero-duda.jpg") center/cover;
   border-radius: 4px;
   box-shadow: 0 24px 60px -20px rgba(26,26,26,0.25);
 }
