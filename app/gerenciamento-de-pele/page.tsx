@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CHECKOUT_URL = "#"; // TODO: substituir pelo link real de checkout
+const CHECKOUT_URL = "https://pay.kiwify.com.br/IKV1kqf";
 
 const BONUS_PROTOCOLS = [
   "Limpeza de pele profunda (prática 1 e 2)",

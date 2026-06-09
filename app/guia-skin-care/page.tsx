@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CHECKOUT_URL = '#oferta';
+const CHECKOUT_URL = 'https://pay.kiwify.com.br/PeL4M7p';
 
 export default function GuiaSkinCare() {
   return (
