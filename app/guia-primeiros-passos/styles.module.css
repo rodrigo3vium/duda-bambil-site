@@ -1,0 +1,386 @@
+.page {
+  --gold-bright: #d9b07b;
+  --line-gold: rgba(201, 160, 107, 0.2);
+}
+
+.page h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.15;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+/* HEADER */
+.header {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.logoDot {
+  color: var(--gold);
+  margin: 0 4px;
+}
+
+/* HERO */
+.hero {
+  padding: 100px 0;
+  position: relative;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.heroTag {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+.heroText h1 {
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.heroLead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+
+.heroMeta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+}
+
+.heroMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.metaDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* HERO COVER IMAGE */
+.heroCover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroCoverImg {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 32px 80px -20px rgba(0, 0, 0, 0.5);
+}
+
+/* CONTEUDO */
+.conteudo {
+  background: var(--bg-soft);
+  padding: 100px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.conteudoHeader {
+  text-align: center;
+  margin: 0 auto 64px;
+  max-width: 600px;
+}
+
+.conteudoHeader h2 {
+  margin-bottom: 16px;
+}
+
+.conteudoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line-gold);
+  border: 1px solid var(--line-gold);
+}
+
+.conteudoItem {
+  background: var(--bg-soft);
+  padding: 36px 28px;
+  transition: background 0.2s;
+}
+
+.conteudoItem:hover {
+  background: var(--bg-card);
+}
+
+.conteudoNum {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.125rem;
+  margin-bottom: 16px;
+}
+
+.conteudoItem h3 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.conteudoItem p {
+  font-size: 0.875rem;
+  color: var(--ink-mute);
+  line-height: 1.5;
+}
+
+/* FORM SECTION */
+.formSection {
+  padding: 120px 0;
+}
+
+.formWrap {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.formWrap h2 {
+  margin-bottom: 16px;
+}
+
+.formWrap > p {
+  margin-bottom: 48px;
+}
+
+/* FORM */
+.form {
+  background: var(--bg-card);
+  border: 1px solid var(--line-gold);
+  padding: 48px 40px;
+  text-align: left;
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formGroup:last-of-type {
+  margin-bottom: 32px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  padding: 16px 18px;
+  transition: border-color 0.2s;
+}
+
+.formInput::placeholder {
+  color: var(--ink-mute);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.inputError {
+  border-color: #c76a5e !important;
+}
+
+.formError {
+  color: #c76a5e;
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+.formSubmit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.formSubmit:hover:not(:disabled) {
+  background: var(--gold-bright);
+  transform: translateY(-1px);
+}
+
+.formSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.formDisclaimer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--ink-mute);
+}
+
+/* SUCCESS */
+.formSuccess {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.formSuccessIcon {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.formSuccess h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.formSuccess p {
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+/* AUTORA */
+.autora {
+  padding: 100px 0;
+  background: var(--bg-soft);
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.autoraContent {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.autoraName {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-top: 24px;
+}
+
+/* FOOTER */
+.footer {
+  padding: 40px 0;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.footerMeta {
+  color: var(--ink-mute);
+  font-size: 0.8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .hero {
+    padding: 60px 0 80px;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .heroCoverImg {
+    max-width: 420px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .conteudoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .conteudo,
+  .formSection,
+  .autora {
+    padding: 64px 0;
+  }
+
+  .form {
+    padding: 32px 24px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+}
