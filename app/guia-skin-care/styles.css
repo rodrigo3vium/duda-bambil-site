@@ -402,7 +402,7 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: var(--bg-alt) center/cover;
+  background: var(--bg-alt) url('/images/duda-bambil.jpg') center/cover;
   margin: 0 auto 32px;
 }
 

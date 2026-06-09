@@ -431,8 +431,7 @@
 
 .sobreImg {
   aspect-ratio: 4/5;
-  /* TODO: replace with url('/images/about-duda.jpg') */
-  background: var(--bg-alt) center / cover;
+  background: var(--bg-alt) url('/images/duda-sobre.jpg') center / cover;
   border-radius: 4px;
 }
 
