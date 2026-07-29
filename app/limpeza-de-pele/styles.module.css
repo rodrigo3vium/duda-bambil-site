@@ -1,0 +1,883 @@
+/* ============================================
+   LIMPEZA DE PELE — LANDING PAGE
+   Estilos isolados via CSS Module.
+   Mesmo design system da LP de Gerenciamento de
+   Pele (bege/preto, Playfair + Inter).
+   ============================================ */
+
+.page {
+  --bg: #ece8e1;
+  --bg-alt: #ddd7cc;
+  --bg-dark: #1a1a1a;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4744;
+  --ink-mute: #6b6863;
+  --line: rgba(26, 26, 26, 0.12);
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Tipografia --- */
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.page h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+.page h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+
+.page p {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+.page strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* --- Layout --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.containerSm {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* --- CTA --- */
+.cta {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 22px 48px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.cta:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.ctaLight {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.ctaLight:hover {
+  background: #fff;
+}
+
+/* --- Header --- */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 0;
+  z-index: 10;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+/* --- Modificadores de seção --- */
+.sectionAlt {
+  background: var(--bg-alt);
+}
+
+.sectionDark {
+  background: var(--bg-dark);
+  color: var(--bg);
+}
+
+.sectionDark h2,
+.sectionDark h3 {
+  color: var(--bg);
+}
+
+.sectionDark p {
+  color: rgba(236, 232, 225, 0.75);
+}
+
+.sectionDark strong {
+  color: var(--bg);
+}
+
+.sectionDark .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+/* ============================================
+   BLOCO 1 — HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  padding: 140px 0 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* H1 dimensionado para caber em no máximo 3 linhas na coluna do hero. */
+.heroText h1 {
+  font-size: clamp(1.85rem, 2.9vw, 2.3rem);
+  margin-bottom: 28px;
+}
+
+.heroText h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.heroText .eyebrow {
+  max-width: 420px;
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: var(--ink-soft);
+  max-width: 540px;
+}
+
+.heroImg {
+  aspect-ratio: 4/5;
+  background: var(--bg-alt) url("/images/hero-duda.jpg") center / cover;
+  border-radius: 4px;
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   BLOCO 2 — O ESPELHO
+   ============================================ */
+.espelho {
+  padding: 120px 0;
+}
+
+.espelho h2 {
+  margin-bottom: 32px;
+  max-width: 18ch;
+}
+
+.espelho p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.espelhoPivot {
+  margin-top: 40px;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.espelhoList {
+  list-style: none;
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+}
+
+.espelhoList li {
+  padding: 20px 0 20px 32px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  position: relative;
+}
+
+.espelhoList li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ink-mute);
+}
+
+/* ============================================
+   BLOCO 3 — A VIRADA
+   ============================================ */
+.virada {
+  padding: 140px 0;
+}
+
+.virada h2 {
+  margin-bottom: 32px;
+}
+
+.virada p {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.viradaPivot {
+  margin-top: 48px;
+  color: var(--bg) !important;
+}
+
+.pilares {
+  list-style: none;
+  margin-top: 32px;
+  border-top: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.pilares li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(236, 232, 225, 0.15);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: rgba(236, 232, 225, 0.75);
+}
+
+.pilarNum {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.75rem;
+  color: rgba(236, 232, 225, 0.45);
+  line-height: 1;
+}
+
+.pilares strong {
+  font-weight: 500;
+  color: var(--bg);
+}
+
+/* ============================================
+   BLOCO 4 — MÓDULOS
+   ============================================ */
+.modulos {
+  padding: 140px 0;
+}
+
+.modulosHeader {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.modulosHeader h2 {
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modulosHeader p {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+}
+
+.modulosList {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.modulo {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 40px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.modulo:last-child {
+  border-bottom: none;
+}
+
+.moduloNum {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-style: italic;
+  color: var(--ink-mute);
+  line-height: 1;
+}
+
+.modulo h3 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.modulo p {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.moduloQuote {
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: var(--bg-alt);
+  border-left: 2px solid var(--ink);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* ============================================
+   BLOCO 5 — PARA QUEM É
+   ============================================ */
+.target {
+  padding: 120px 0;
+}
+
+.target h2 {
+  text-align: center;
+  margin-bottom: 72px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.targetGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.targetCol h3 {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.targetCol ul {
+  list-style: none;
+}
+
+.targetCol li {
+  padding: 16px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.sim li::before {
+  content: "✓";
+  color: var(--ink);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.nao li::before {
+  content: "✗";
+  color: var(--ink-mute);
+  flex-shrink: 0;
+}
+
+.nao li {
+  color: var(--ink-mute);
+}
+
+/* ============================================
+   BLOCO 6 — OFERTA
+   ============================================ */
+.oferta {
+  padding: 140px 0;
+}
+
+.ofertaHeader {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.ofertaHeader h2 {
+  margin-bottom: 24px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ofertaHeader p {
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+}
+
+.ofertaCard {
+  background: var(--bg-dark);
+  color: var(--bg);
+  padding: 72px 64px;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.ofertaCard .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.ofertaPreco {
+  margin-bottom: 48px;
+}
+
+.precoDe {
+  font-size: 1rem;
+  color: rgba(236, 232, 225, 0.5);
+  text-decoration: line-through;
+  margin-bottom: 12px;
+}
+
+.valor {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--bg);
+}
+
+.valor sup {
+  font-size: 1.5rem;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+.obs {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(236, 232, 225, 0.6);
+  margin-top: 12px;
+}
+
+.parcelas {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+  color: rgba(236, 232, 225, 0.75);
+  margin-top: 16px;
+}
+
+.ofertaLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(236, 232, 225, 0.5);
+  text-align: left;
+  padding-top: 32px;
+  border-top: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.ofertaIncludes {
+  list-style: none;
+  text-align: left;
+  margin: 20px 0 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(236, 232, 225, 0.15);
+}
+
+.ofertaIncludes li {
+  padding: 12px 0;
+  color: rgba(236, 232, 225, 0.85);
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.ofertaIncludes li::before {
+  content: "✓";
+  color: rgba(236, 232, 225, 0.55);
+  flex-shrink: 0;
+}
+
+.garantia {
+  margin-top: 28px;
+  font-size: 0.85rem;
+  color: rgba(236, 232, 225, 0.6) !important;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   BLOCO 7 — GARANTIA
+   ============================================ */
+.guaranteeBlock {
+  text-align: center;
+  padding: 100px 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 32px;
+  color: var(--ink);
+}
+
+.guaranteeBlock h2 {
+  margin-bottom: 24px;
+}
+
+.guaranteeBlock p {
+  max-width: 580px;
+  margin: 0 auto 16px;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* ============================================
+   BLOCO 8 — QUEM ENSINA
+   ============================================ */
+.sobre {
+  padding: 120px 0;
+  background: var(--bg-dark);
+}
+
+.sobreGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.sobreImg {
+  aspect-ratio: 4/5;
+  background: #2a2a2a url("/images/duda-sobre.jpg") center / cover;
+  border-radius: 4px;
+}
+
+.sobre h2,
+.sobre h3 {
+  color: var(--bg);
+}
+
+.sobre .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.sobreText h2 {
+  margin-bottom: 32px;
+}
+
+.sobreText p {
+  font-size: 1.0625rem;
+  margin-bottom: 24px;
+  line-height: 1.7;
+  color: rgba(236, 232, 225, 0.75);
+}
+
+.sobreSig {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-top: 32px;
+  color: var(--bg);
+}
+
+/* ============================================
+   BLOCO 9 — FAQ
+   ============================================ */
+.faq {
+  padding: 120px 0;
+}
+
+.faq h2 {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.faqList {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.faqItem h3 {
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--ink);
+  letter-spacing: 0;
+}
+
+.faqItem p {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+/* ============================================
+   BLOCO 10 — FECHAMENTO
+   ============================================ */
+.final {
+  text-align: center;
+  padding: 160px 0;
+  background: var(--bg-dark);
+  color: var(--bg);
+}
+
+.final .eyebrow {
+  color: rgba(236, 232, 225, 0.5);
+}
+
+.final h2 {
+  color: var(--bg);
+  margin-bottom: 32px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+}
+
+.final h2 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.final p {
+  color: rgba(236, 232, 225, 0.7);
+  font-size: 1.125rem;
+  margin-bottom: 48px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.finalMeta {
+  margin-top: 32px;
+  font-size: 0.85rem;
+  color: rgba(236, 232, 225, 0.5) !important;
+  margin-bottom: 0;
+}
+
+/* --- Footer --- */
+.footer {
+  background: var(--bg-dark);
+  padding: 64px 0;
+  text-align: center;
+  border-top: 1px solid rgba(236, 232, 225, 0.1);
+}
+
+.footer .logo {
+  color: var(--bg);
+}
+
+.footer p {
+  color: rgba(236, 232, 225, 0.5);
+  font-size: 0.85rem;
+  margin-top: 24px;
+}
+
+.footer a {
+  color: rgba(236, 232, 225, 0.7);
+  text-decoration: none;
+}
+
+/* ============================================
+   RESPONSIVO
+   ============================================ */
+
+@media (max-width: 860px) {
+  .hero {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+
+  .heroGrid,
+  .sobreGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .heroImg,
+  .sobreImg {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .heroText h1 {
+    font-size: clamp(1.75rem, 5.6vw, 2.3rem);
+  }
+
+  .espelho h2 {
+    max-width: none;
+  }
+
+  .targetGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .modulo {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .moduloNum {
+    font-size: 2rem;
+  }
+
+  .pilares li {
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+  }
+
+  .espelho,
+  .sobre,
+  .faq,
+  .guaranteeBlock {
+    padding: 80px 0;
+  }
+
+  .virada,
+  .modulos,
+  .target,
+  .oferta {
+    padding: 80px 0;
+  }
+
+  .final {
+    padding: 100px 0;
+  }
+
+  .ofertaCard {
+    padding: 56px 32px;
+  }
+
+  .valor {
+    font-size: 3.75rem;
+  }
+
+  .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .containerSm {
+    padding: 0 24px;
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+  }
+
+  .cta {
+    padding: 18px 28px;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  .heroMeta {
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+}
