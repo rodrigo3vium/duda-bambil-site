@@ -109,7 +109,7 @@ export default function LimpezaDePelePage() {
         <div className={styles.containerSm}>
           <div className={styles.eyebrow}>Você já viveu isso</div>
           <h2>
-            Passou 1h40 num atendimento que devia durar 50 minutos.
+            Passou 1h40 num atendimento que devia durar uma hora.
           </h2>
           <p>
             Suou. Forçou a extração porque a emoliência não fez o trabalho dela.
@@ -138,8 +138,8 @@ export default function LimpezaDePelePage() {
         <div className={styles.containerSm}>
           <h2>Este curso não vai ser padrão.</h2>
           <p>
-            Não é mais um &ldquo;passo a passo de limpeza de pele&rdquo; de 40
-            minutos que você assiste e esquece.
+            Não é mais uma videoaula avulsa de limpeza de pele que você assiste
+            e esquece.
           </p>
           <p>
             É a formação que a Duda Bambil montou a partir do que realmente
