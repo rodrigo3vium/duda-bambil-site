@@ -1,7 +1,13 @@
 // TODO: substituir os placeholders abaixo pelos links/URLs reais.
+
+// WhatsApp comercial da Duda Bambil: +55 67 99856-8757
+const WHATSAPP_NUMERO = "5567998568757";
+
 const LINKS = {
   // WhatsApp para agendamento de avaliação (paciente)
-  whatsappAgendamento: "#", // TODO: WHATSAPP_AGENDAMENTO
+  whatsappAgendamento: `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
+    "Oi, Duda! Quero agendar minha avaliação de pele."
+  )}`,
   // Página da Imersão Wonderskin
   wonderskin: "#", // TODO: WONDERSKIN_LINK
   // Página do Curso de Gerenciamento de Pele
@@ -9,7 +15,7 @@ const LINKS = {
   // Página do Guia Editável de Skincare
   guia: "/guia-skin-care",
   // WhatsApp de contato geral
-  whatsapp: "#", // TODO: WHATSAPP_LINK
+  whatsapp: `https://wa.me/${WHATSAPP_NUMERO}`,
   instagram: "https://instagram.com/dudabambill",
 };
 
@@ -56,7 +62,12 @@ export default function Home() {
           </div>
 
           <div className="cards-grid">
-            <a href={LINKS.whatsappAgendamento} className="card">
+            <a
+              href={LINKS.whatsappAgendamento}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card"
+            >
               <div>
                 <div className="card-eyebrow">Para você, paciente</div>
                 <h3>Gerenciamento de Pele</h3>
