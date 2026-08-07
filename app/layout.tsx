@@ -45,15 +45,22 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </body>
-      <Script id="clarity" strategy="afterInteractive">{`
+        {/*
+          ⚠️ NÃO renomeie estes ids para "clarity" nem "fbq".
+          Um elemento com id="X" vira window.X automaticamente (named access no
+          window). O snippet do Clarity faz `window.clarity = window.clarity ||
+          stub`; se window.clarity já for o próprio <script id="clarity">, o
+          stub nunca é criado, o tag da Microsoft quebra em "a[c] is not a
+          function" e NENHUM dado é enviado — a instalação nunca é reconhecida.
+        */}
+        <Script id="ms-clarity" strategy="afterInteractive">{`
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window,document,"clarity","script","xr952o1qq5");
-      `}</Script>
-      <Script id="meta-pixel" strategy="afterInteractive">{`
+        `}</Script>
+        <Script id="meta-pixel" strategy="afterInteractive">{`
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -64,7 +71,8 @@ export default function RootLayout({
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1612355636912285');
         fbq('track', 'PageView');
-      `}</Script>
+        `}</Script>
+      </body>
     </html>
   );
 }
