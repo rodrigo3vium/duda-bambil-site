@@ -169,6 +169,10 @@
   margin-bottom: 36px;
 }
 
+.formIntro p + p {
+  margin-top: 18px;
+}
+
 .formBloco {
   background: #f6f3ee;
   border: 1px solid var(--line);

@@ -6,8 +6,7 @@
  * Não existe classificação: toda aplicação preenchida é enviada igual e a
  * triagem é feita pela equipe. Por isso a finalização é uma só, para todo mundo.
  *
- * ⚠️ COPY PLACEHOLDER neste arquivo: o disclaimer do rodapé do form. A
- * mensagem de finalização é copy definitiva da Duda. Marcados com [COPY].
+ * ⚠️ É mentoria INDIVIDUAL — não usar "turma" na copy.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -364,7 +363,6 @@ export default function AplicacaoForm() {
           </button>
         </div>
 
-        {/* [COPY] disclaimer do rodapé do formulário */}
         <p className={styles.formDisclaimer}>
           Suas respostas são lidas por uma pessoa. Sem spam, sem lista.
         </p>
