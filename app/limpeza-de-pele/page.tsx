@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import styles from "./styles.module.css";
 
 export const metadata: Metadata = {
@@ -56,9 +57,9 @@ export default function LimpezaDePelePage() {
       <header className={styles.header}>
         <div className={styles.container}>
           <div className={styles.headerInner}>
-            <a href="/" className={styles.logo}>
+            <Link href="/" className={styles.logo}>
               Duda Bambil
-            </a>
+            </Link>
             <nav className={styles.nav}>
               <a href="#virada">O curso</a>
               <a href="#modulos">Módulos</a>
@@ -534,9 +535,9 @@ export default function LimpezaDePelePage() {
       {/* FOOTER */}
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <a href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             Duda Bambil
-          </a>
+          </Link>
           <p>
             Curso de Limpeza de Pele ·{" "}
             <a

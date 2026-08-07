@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './styles.module.css';
 import LeadForm from './LeadForm';
 
@@ -53,9 +54,9 @@ export default function GuiaPrimeirosPassosPage() {
       {/* HEADER */}
       <header className={styles.header}>
         <div className={styles.container}>
-          <a href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             Duda<span className={styles.logoDot}>·</span>Bambil
-          </a>
+          </Link>
         </div>
       </header>
 
