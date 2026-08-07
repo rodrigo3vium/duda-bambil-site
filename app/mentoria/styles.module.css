@@ -1,0 +1,507 @@
+/* ============================================
+   MENTORIA — PÁGINA DE APLICAÇÃO
+   Estilos isolados via CSS Module.
+   Mesmo design system das LPs de Limpeza de Pele
+   e Gerenciamento de Pele (bege/preto, Playfair
+   + Inter). Escrito mobile-first: o base é o
+   celular, o desktop entra em @media (min-width).
+   ============================================ */
+
+.page {
+  --bg: #ece8e1;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4744;
+  --ink-mute: #6b6863;
+  --line: rgba(26, 26, 26, 0.12);
+  --erro: #a4402f;
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Tipografia --- */
+.page h1,
+.page h2,
+.page h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.page h1 {
+  /* Dimensionado para caber em no máximo 3 linhas. */
+  font-size: clamp(1.9rem, 7vw, 2.1rem);
+  margin-bottom: 20px;
+}
+
+.page h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.page h2 {
+  font-size: clamp(1.6rem, 5.5vw, 2rem);
+  margin-bottom: 20px;
+}
+
+.page h3 {
+  font-size: 1.25rem;
+}
+
+.page p {
+  font-size: 1.0625rem;
+  color: var(--ink-soft);
+}
+
+.page strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* --- Layout --- */
+.container,
+.containerSm {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.containerSm {
+  max-width: 780px;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/* --- CTA --- */
+.cta {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 20px 36px;
+  min-height: 56px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.cta:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+/* --- Header --- */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 0;
+  z-index: 10;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* ============================================
+   1 — HERO
+   ============================================ */
+.hero {
+  padding: 132px 0 72px;
+}
+
+.lead {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 32px;
+  color: var(--ink-soft);
+  max-width: 540px;
+}
+
+.heroNota {
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: var(--ink-mute);
+}
+
+/* ============================================
+   2 — APLICAÇÃO / FORMULÁRIO
+   ============================================ */
+.secaoForm {
+  padding: 72px 0 96px;
+  scroll-margin-top: 24px;
+}
+
+.formIntro {
+  margin-bottom: 36px;
+}
+
+.formBloco {
+  background: #f6f3ee;
+  border: 1px solid var(--line);
+  padding: 28px 20px;
+  scroll-margin-top: 24px;
+}
+
+/* --- Progresso --- */
+.progressoWrap {
+  margin-bottom: 28px;
+}
+
+.progressoTopo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progressoTexto {
+  font-size: 0.7rem !important;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute) !important;
+}
+
+.progressoTexto:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.progressoTrilha {
+  height: 3px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.progressoBarra {
+  height: 100%;
+  background: var(--ink);
+  transition: width 0.3s ease;
+}
+
+/* --- Campos --- */
+.form {
+  display: block;
+}
+
+.campo {
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+}
+
+.label,
+.legenda {
+  display: block;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mute);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.input {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  /* 16px é o mínimo que evita o zoom automático do iOS no focus. */
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 52px;
+  padding: 14px 16px;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.input::placeholder {
+  color: #9a958e;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.inputErro {
+  border-color: var(--erro);
+}
+
+.ajuda,
+.contador {
+  margin-top: 8px;
+  font-size: 0.8rem !important;
+  color: var(--ink-mute) !important;
+}
+
+.erro {
+  margin-top: 8px;
+  font-size: 0.85rem !important;
+  color: var(--erro) !important;
+  font-weight: 400;
+}
+
+.erroEnvio {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  background: rgba(164, 64, 47, 0.08);
+  border-left: 2px solid var(--erro);
+  font-size: 0.9rem !important;
+  color: var(--erro) !important;
+}
+
+/* --- Rádios --- */
+.opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.opcao:hover {
+  border-color: var(--ink-mute);
+}
+
+.opcao input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  accent-color: #1a1a1a;
+  margin: 0;
+}
+
+.opcao:focus-within {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.opcaoAtiva {
+  border-color: var(--ink);
+  background: #fbf9f6;
+  color: var(--ink);
+}
+
+.opcoesErro .opcao {
+  border-color: rgba(164, 64, 47, 0.5);
+}
+
+/* --- Ações --- */
+.formAcoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.botaoPrimario,
+.botaoSecundario {
+  flex: 1 1 auto;
+  min-height: 56px;
+  padding: 18px 24px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, opacity 0.2s;
+}
+
+.botaoPrimario {
+  background: var(--ink);
+  color: var(--bg);
+  flex: 2 1 auto;
+}
+
+.botaoPrimario:hover:not(:disabled) {
+  background: #000;
+  transform: translateY(-1px);
+}
+
+.botaoSecundario {
+  background: transparent;
+  color: var(--ink);
+}
+
+.botaoSecundario:hover:not(:disabled) {
+  background: rgba(26, 26, 26, 0.06);
+}
+
+.botaoPrimario:disabled,
+.botaoSecundario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.formDisclaimer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.8rem !important;
+  color: var(--ink-mute) !important;
+}
+
+/* --- Honeypot: fora da tela, fora do foco, fora do leitor de tela. --- */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- Resultado pós-envio --- */
+.resultado {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.resultadoSelo {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.resultado h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+/* Mensagem única de finalização — curta, então fica centralizada. */
+.resultado p {
+  margin: 0 auto;
+  max-width: 34ch;
+  text-align: center;
+}
+
+/* --- Rodapé --- */
+.rodape {
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+}
+
+.rodape p {
+  font-size: 0.8rem;
+  color: var(--ink-mute);
+}
+
+/* ============================================
+   DESKTOP
+   ============================================ */
+@media (min-width: 860px) {
+  .container,
+  .containerSm {
+    padding: 0 32px;
+  }
+
+  .header {
+    padding: 32px 0;
+  }
+
+  .page h1 {
+    font-size: clamp(2.1rem, 3.4vw, 2.9rem);
+    max-width: 18ch;
+    margin-bottom: 28px;
+  }
+
+  .page h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+  }
+
+  .hero {
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    padding: 160px 0 100px;
+  }
+
+  .lead {
+    font-size: 1.125rem;
+    margin-bottom: 40px;
+  }
+
+  .secaoForm {
+    padding: 110px 0 140px;
+  }
+
+  .formBloco {
+    padding: 48px 40px;
+  }
+
+  .formIntro {
+    margin-bottom: 48px;
+  }
+
+  .formAcoes {
+    margin-top: 40px;
+  }
+}
