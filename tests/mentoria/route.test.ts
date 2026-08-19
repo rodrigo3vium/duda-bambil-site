@@ -221,6 +221,45 @@ describe("POST /api/mentoria — falha do webhook", () => {
     expect(await res.json()).toEqual({ ok: true });
   }, 15000);
 
+  it("HTTP 200 com {ok:false} no corpo NÃO conta como entrega", async () => {
+    // O Web App do Apps Script sempre responde 200 e sinaliza recusa no corpo
+    // (ex.: token divergente). Sem detectar isso, o lead sumiria em silêncio.
+    const erro = vi.spyOn(console, "error").mockImplementation(() => {});
+    fetchMock.mockResolvedValue(
+      new Response(JSON.stringify({ ok: false, error: "token" }), { status: 200 }),
+    );
+
+    const res = await POST(req(corpo()));
+
+    expect(await res.json()).toEqual({ ok: true }); // usuário não paga pelo nosso erro
+    expect(fetchMock).toHaveBeenCalledTimes(1); // recusa é config: não adianta insistir
+
+    const logado = erro.mock.calls.at(-1)?.join(" ") ?? "";
+    expect(logado).toContain("destino recusou");
+    expect(logado).toContain("67998568757"); // payload recuperável no log
+  });
+
+  it("corpo não-JSON com 200 conta como entrega (Make, Zapier, n8n)", async () => {
+    const erro = vi.spyOn(console, "error").mockImplementation(() => {});
+    fetchMock.mockResolvedValue(new Response("Accepted", { status: 200 }));
+
+    await POST(req(corpo()));
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(erro).not.toHaveBeenCalled();
+  });
+
+  it("corpo JSON com {ok:true} conta como entrega", async () => {
+    const erro = vi.spyOn(console, "error").mockImplementation(() => {});
+    fetchMock.mockResolvedValue(
+      new Response(JSON.stringify({ ok: true }), { status: 200 }),
+    );
+
+    await POST(req(corpo()));
+
+    expect(erro).not.toHaveBeenCalled();
+  });
+
   it("não insiste em 4xx — loga e segue", async () => {
     const erro = vi.spyOn(console, "error").mockImplementation(() => {});
     fetchMock.mockResolvedValue(new Response("nope", { status: 404 }));

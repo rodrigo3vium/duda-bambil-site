@@ -125,7 +125,17 @@ async function encaminhar(payload: Record<string, unknown>): Promise<void> {
         signal: AbortSignal.timeout(TIMEOUT_MS),
       });
 
-      if (res.ok) return;
+      if (res.ok) {
+        // HTTP 200 não basta: destinos como o Web App do Apps Script SEMPRE
+        // respondem 200 e sinalizam a recusa no corpo ({"ok":false,...}).
+        // Sem esta checagem, um token divergente sumiria com o lead em
+        // silêncio — sem retry e sem log.
+        const recusa = await lerRecusa(res);
+        if (!recusa) return;
+
+        ultimoErro = `destino recusou: ${recusa}`;
+        break; // recusa é erro de configuração; tentar de novo não resolve
+      }
 
       ultimoErro = `HTTP ${res.status}`;
       // 4xx (fora 408/429) não melhora tentando de novo.
@@ -143,9 +153,33 @@ async function encaminhar(payload: Record<string, unknown>): Promise<void> {
 
   // Falha definitiva: o lead fica no log, recuperável na mão.
   console.error(
-    `[mentoria] webhook falhou após ${TENTATIVAS} tentativas (${ultimoErro}). PAYLOAD:`,
+    `[mentoria] webhook não confirmou a entrega (${ultimoErro}). PAYLOAD:`,
     JSON.stringify(payload),
   );
+}
+
+/**
+ * Devolve a descrição da recusa se o corpo for um JSON com `ok: false`, ou
+ * `null` quando o destino não sinalizou recusa. Corpo não-JSON (webhook do
+ * Make, Zapier, n8n respondendo "Accepted") conta como aceite.
+ */
+async function lerRecusa(res: Response): Promise<string | null> {
+  let texto: string;
+  try {
+    texto = await res.text();
+  } catch {
+    return null;
+  }
+
+  try {
+    const corpo = JSON.parse(texto) as { ok?: unknown; error?: unknown };
+    if (corpo && typeof corpo === "object" && corpo.ok === false) {
+      return texto.slice(0, 200);
+    }
+  } catch {
+    // não é JSON — segue como aceite
+  }
+  return null;
 }
 
 function esperar(ms: number): Promise<void> {
