@@ -471,7 +471,7 @@ export default function GerenciamentoDePelePage() {
 
             <div className={styles.ofertaPreco}>
               <div className={styles.label}>Acesso por</div>
-              <div className={styles.parcelas}>12x de R$38,39</div>
+              <div className={styles.parcelas}>12x de R$41,06</div>
               <div className={styles.valor}>
                 ou <sup>R$</sup>397
               </div>
@@ -595,7 +595,7 @@ export default function GerenciamentoDePelePage() {
             Quero começar agora
           </a>
           <p className={styles.finalMeta}>
-            Acesso vitalício · Garantia de 7 dias · 12x de R$38,39
+            Acesso vitalício · Garantia de 7 dias · 12x de R$41,06
           </p>
         </div>
       </section>
