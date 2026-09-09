@@ -471,9 +471,9 @@ export default function GerenciamentoDePelePage() {
 
             <div className={styles.ofertaPreco}>
               <div className={styles.label}>Acesso por</div>
-              <div className={styles.parcelas}>12x de R$41,06</div>
+              <div className={styles.parcelas}>12x de R$28,72</div>
               <div className={styles.valor}>
-                ou <sup>R$</sup>397
+                ou <sup>R$</sup>297
               </div>
               <div className={styles.obs}>
                 à vista · Pagamento único · Acesso imediato
@@ -556,10 +556,10 @@ export default function GerenciamentoDePelePage() {
             <div className={styles.faqItem}>
               <h3>Por que não é mais barato?</h3>
               <p>
-                Porque um curso barato atrai gente que não aplica. R$397 é o
+                Porque um curso barato atrai gente que não aplica. R$297 é o
                 filtro — quem investe esse valor leva a sério. Se aplicar o
                 método em um único plano de tratamento de R$2.000, você pagou o
-                curso 5 vezes.
+                curso 6 vezes.
               </p>
             </div>
 
@@ -588,14 +588,14 @@ export default function GerenciamentoDePelePage() {
             Ou pode mudar de método.
           </h2>
           <p>
-            O preço da inação não é R$397. É outro ano cobrando R$80 por uma
+            O preço da inação não é R$297. É outro ano cobrando R$80 por uma
             limpeza enquanto biomédica do lado fatura 10 vezes mais.
           </p>
           <a href={CHECKOUT_URL} className={`${styles.cta} ${styles.ctaLight}`}>
             Quero começar agora
           </a>
           <p className={styles.finalMeta}>
-            Acesso vitalício · Garantia de 7 dias · 12x de R$41,06
+            Acesso vitalício · Garantia de 7 dias · 12x de R$28,72
           </p>
         </div>
       </section>
