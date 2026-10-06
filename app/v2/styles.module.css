@@ -1,0 +1,542 @@
+/* ============================================
+   HOME V2 — PRÉVIA (formato link-na-bio)
+   Estilos isolados via CSS Module. Paleta nude
+   + cacau; Playfair + Inter (variáveis do layout).
+   Coluna estreita e centrada, mobile-first.
+   ============================================ */
+
+.page {
+  --bg: #ece3d8;
+  --ink: #2e241d;
+  --ink-soft: rgba(46, 36, 29, 0.72);
+  --ink-mute: rgba(46, 36, 29, 0.5);
+  /* Acento único da página. Pra testar o verde-oliva da referência: #5b5f45 */
+  --accent: #4a3a2e;
+  --accent-ink: #f6efe7;
+  --gold: #a9834f;
+  --rose: #c99d8c;
+  --glass: rgba(255, 251, 246, 0.34);
+  --glass-line: rgba(255, 255, 255, 0.7);
+  --shadow: 0 12px 32px rgba(74, 58, 46, 0.1);
+  --radius: 20px;
+  --serif: var(--font-serif), Georgia, serif;
+  --sans: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+
+  position: relative;
+  min-height: 100vh;
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* globals.css pinta <p> de creme (tema escuro da Home atual).
+   :where() zera a especificidade do <p> pra não atropelar as classes abaixo. */
+.page :where(p) {
+  color: inherit;
+  font-size: inherit;
+}
+
+/* --- Fundo: foto desfocada + véu nude --- */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bgImg {
+  object-fit: cover;
+  object-position: 50% 30%;
+  filter: blur(22px) saturate(0.85);
+  transform: scale(1.15);
+}
+
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(236, 227, 216, 0.88) 0%,
+    rgba(236, 227, 216, 0.6) 45%,
+    rgba(236, 227, 216, 0.78) 100%
+  );
+}
+
+/* --- Coluna --- */
+.column {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 40px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* --- Marca --- */
+.brand {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.mono {
+  position: relative;
+  width: 64px;
+  height: 70px;
+  margin: 0 auto 18px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 54px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.monoD {
+  position: absolute;
+  left: 2px;
+  top: 0;
+}
+
+.monoB {
+  position: absolute;
+  left: 24px;
+  top: 16px;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.role {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  /* compensa o tracking da última letra pra centralizar de verdade */
+  margin-right: -0.42em;
+}
+
+/* --- Base dos cards (todos são <a>) --- */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--ink);
+  border-radius: var(--radius);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(74, 58, 46, 0.16);
+}
+
+.card:active {
+  transform: scale(0.99);
+}
+
+.card:focus-visible,
+.social:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- Agendamento: card de vidro com o selo do WhatsApp --- */
+.agendar {
+  margin-top: 44px;
+  padding: 58px 20px 24px;
+  background: var(--glass);
+  border: 1.5px solid var(--glass-line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.whatsBadge {
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(74, 58, 46, 0.25);
+}
+
+.whatsIcon {
+  width: 44px;
+  height: 44px;
+}
+
+.agendarEyebrow {
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.agendarTitle {
+  font-size: clamp(1.6rem, 7vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 8px 26px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.groupLabel {
+  text-align: center;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin: 14px 0 -4px;
+}
+
+/* --- Banners (curso, imersão, guia) --- */
+.banner {
+  min-height: 188px;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Curso: bloco sólido no acento */
+.curso {
+  padding: 34px 20px 26px;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.ghost {
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: 190px;
+  font-style: italic;
+  line-height: 1;
+  color: rgba(246, 239, 231, 0.07);
+  pointer-events: none;
+}
+
+.tabPill {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 16px;
+  border-radius: 999px;
+  background: var(--accent-ink);
+  color: var(--accent);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cursoKicker,
+.cursoBy {
+  position: relative;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-right: -0.4em;
+  opacity: 0.85;
+}
+
+.cursoTitle {
+  position: relative;
+  max-width: 300px;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 7vw, 1.95rem);
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 8px 0 12px;
+}
+
+.cursoBy {
+  color: var(--gold);
+  opacity: 1;
+  filter: brightness(1.35);
+}
+
+/* Imersão: foto à direita, texto à esquerda */
+.imersao {
+  align-items: flex-start;
+  text-align: left;
+  background: #8f7a6a;
+  color: var(--accent-ink);
+}
+
+.imersaoPhoto {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 64%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+}
+
+.imersaoImg {
+  object-fit: cover;
+  object-position: 55% 22%;
+}
+
+.imersaoText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 20px;
+}
+
+.darkPill {
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.imersaoTitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 7.6vw, 2.15rem);
+  line-height: 1.02;
+  margin-bottom: 10px;
+}
+
+.imersaoSub {
+  max-width: 150px;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Guia: banner claro com duas "pinceladas" de produto saindo pelos cantos */
+.guia {
+  padding: 28px 20px;
+  background: #f7f2ec;
+}
+
+.guia::before,
+.guia::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.guia::before {
+  top: -22px;
+  right: -34px;
+  width: 170px;
+  height: 64px;
+  background: linear-gradient(
+    110deg,
+    rgba(178, 190, 160, 0.6) 0%,
+    rgba(232, 196, 178, 0.65) 100%
+  );
+  transform: rotate(-16deg);
+}
+
+.guia::after {
+  bottom: -20px;
+  left: -36px;
+  width: 150px;
+  height: 52px;
+  background: linear-gradient(
+    80deg,
+    rgba(201, 157, 140, 0.45) 0%,
+    rgba(236, 220, 204, 0.8) 100%
+  );
+  transform: rotate(12deg);
+}
+
+.rosePill {
+  position: relative;
+  padding: 4px 18px;
+  border-radius: 999px;
+  background: var(--rose);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.guiaTitle {
+  position: relative;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 8vw, 2.25rem);
+  line-height: 1.1;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.guiaSub {
+  position: relative;
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: -0.3em;
+}
+
+/* --- Rodapé --- */
+.footer {
+  margin-top: 26px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footerAsk {
+  max-width: 300px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.social {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background: var(--glass);
+  border: 1.5px solid var(--glass-line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.2s, color 0.2s;
+}
+
+.social:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.tagline {
+  max-width: 280px;
+  text-wrap: balance;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.copy {
+  font-size: 0.72rem;
+  color: var(--ink-mute);
+}
+
+/* --- Entrada suave (só pra quem não pediu menos movimento) --- */
+@media (prefers-reduced-motion: no-preference) {
+  .brand,
+  .card,
+  .groupLabel,
+  .footer {
+    /* backwards (não both): ao terminar, solta o transform pro :hover funcionar */
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  }
+  .agendar { animation-delay: 0.08s; }
+  .groupLabel { animation-delay: 0.14s; }
+  .curso { animation-delay: 0.18s; }
+  .imersao { animation-delay: 0.26s; }
+  .guia { animation-delay: 0.34s; }
+  .footer { animation-delay: 0.42s; }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Desktop: mesma coluna, mais respiro --- */
+@media (min-width: 720px) {
+  .column {
+    padding-top: 64px;
+    gap: 22px;
+  }
+  .banner {
+    min-height: 210px;
+  }
+}
