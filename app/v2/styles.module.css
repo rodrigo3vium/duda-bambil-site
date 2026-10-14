@@ -304,15 +304,48 @@
   filter: brightness(1.35);
 }
 
-/* Imersão: foto à direita, texto à esquerda */
-.imersao {
+/* Limpeza de Pele: tom areia com moldura fina por dentro */
+.limpeza {
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #dccbb8 0%, #cbb49e 100%);
+  color: var(--accent);
+}
+
+.limpeza::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: calc(var(--radius) - 6px);
+  pointer-events: none;
+}
+
+.limpezaTitle {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 8.4vw, 2.4rem);
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+
+.limpezaSub {
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-right: -0.3em;
+  opacity: 0.85;
+}
+
+/* Cursos presenciais: foto à direita, texto à esquerda */
+.presencial {
   align-items: flex-start;
   text-align: left;
   background: #8f7a6a;
   color: var(--accent-ink);
 }
 
-.imersaoPhoto {
+.presencialPhoto {
   position: absolute;
   top: 0;
   right: 0;
@@ -322,12 +355,12 @@
   mask-image: linear-gradient(to right, transparent 0%, #000 38%);
 }
 
-.imersaoImg {
+.presencialImg {
   object-fit: cover;
   object-position: 55% 22%;
 }
 
-.imersaoText {
+.presencialText {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -347,7 +380,7 @@
   margin-bottom: 10px;
 }
 
-.imersaoTitle {
+.presencialTitle {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
@@ -356,7 +389,7 @@
   margin-bottom: 10px;
 }
 
-.imersaoSub {
+.presencialSub {
   max-width: 150px;
   font-size: 0.68rem;
   font-weight: 400;
@@ -514,9 +547,10 @@
   .agendar { animation-delay: 0.08s; }
   .groupLabel { animation-delay: 0.14s; }
   .curso { animation-delay: 0.18s; }
-  .imersao { animation-delay: 0.26s; }
-  .guia { animation-delay: 0.34s; }
-  .footer { animation-delay: 0.42s; }
+  .limpeza { animation-delay: 0.24s; }
+  .presencial { animation-delay: 0.3s; }
+  .guia { animation-delay: 0.36s; }
+  .footer { animation-delay: 0.44s; }
 }
 
 @keyframes rise {

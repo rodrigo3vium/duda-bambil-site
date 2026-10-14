@@ -1,8 +1,9 @@
 // PRÉVIA da Home v2 — inspirada no formato "link-na-bio" (fundo nude com foto
 // desfocada, card de vidro pro agendamento e banners empilhados).
-// Mesmo conteúdo/links da Home atual (app/page.tsx). Publicada em /v2 pra
-// aprovação da Duda; se aprovada, este arquivo substitui a page.tsx raiz e a
-// rota /v2 deixa de existir.
+// Partiu do conteúdo da Home atual (app/page.tsx), com os ajustes pedidos pela
+// Duda: "Agende seu horário", Curso de Limpeza de Pele e Cursos presenciais no
+// lugar da Imersão Wonderskin. Publicada em /v2 pra aprovação; se aprovada,
+// este arquivo substitui a page.tsx raiz e a rota /v2 deixa de existir.
 
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -14,15 +15,20 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Espelha LINKS de app/page.tsx (page.tsx não pode exportar constantes).
+// Baseado nos LINKS de app/page.tsx (page.tsx não pode exportar constantes).
 const WHATSAPP_NUMERO = "5567998568757";
 
+const whatsappCom = (mensagem: string) =>
+  `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+
 const LINKS = {
-  whatsappAgendamento: `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(
-    "Oi, Duda! Quero agendar minha avaliação de pele."
-  )}`,
-  wonderskin: "#", // TODO: WONDERSKIN_LINK
+  whatsappAgendamento: whatsappCom("Oi, Duda! Quero agendar um horário."),
+  // Ainda não há página dos cursos presenciais: o interesse cai no WhatsApp.
+  cursosPresenciais: whatsappCom(
+    "Oi, Duda! Quero saber dos cursos presenciais."
+  ),
   curso: "/gerenciamento-de-pele",
+  limpeza: "/limpeza-de-pele",
   guia: "/guia-skin-care",
   whatsapp: `https://wa.me/${WHATSAPP_NUMERO}`,
   instagram: "https://instagram.com/dudabambill",
@@ -80,7 +86,7 @@ export default function HomeV2() {
             <WhatsAppIcon className={styles.whatsIcon} />
           </span>
           <span className={styles.agendarEyebrow}>Para você, paciente</span>
-          <span className={styles.agendarTitle}>Agende sua avaliação</span>
+          <span className={styles.agendarTitle}>Agende seu horário</span>
           <span className={styles.pill}>Quero agendar</span>
         </a>
 
@@ -104,28 +110,40 @@ export default function HomeV2() {
           <span className={styles.cursoBy}>Por Duda Bambil</span>
         </a>
 
-        {/* IMERSÃO — banner com foto */}
+        {/* LIMPEZA DE PELE — banner areia com moldura */}
         <a
-          href={LINKS.wonderskin}
-          className={`${styles.card} ${styles.banner} ${styles.imersao}`}
+          href={LINKS.limpeza}
+          className={`${styles.card} ${styles.banner} ${styles.limpeza}`}
         >
-          <span className={styles.imersaoPhoto}>
+          <span className={styles.darkPill}>Curso online</span>
+          <span className={styles.limpezaTitle}>Limpeza de Pele</span>
+          <span className={styles.limpezaSub}>Da anamnese à precificação</span>
+        </a>
+
+        {/* CURSOS PRESENCIAIS — banner com foto */}
+        <a
+          href={LINKS.cursosPresenciais}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${styles.card} ${styles.banner} ${styles.presencial}`}
+        >
+          <span className={styles.presencialPhoto}>
             <Image
               src="/images/hero-duda.jpg"
               alt=""
               fill
               sizes="(max-width: 560px) 65vw, 340px"
-              className={styles.imersaoImg}
+              className={styles.presencialImg}
             />
           </span>
-          <span className={styles.imersaoText}>
-            <span className={styles.darkPill}>Presencial</span>
-            <span className={styles.imersaoTitle}>
-              Imersão
+          <span className={styles.presencialText}>
+            <span className={styles.darkPill}>Informações</span>
+            <span className={styles.presencialTitle}>
+              Cursos
               <br />
-              Wonderskin
+              presenciais
             </span>
-            <span className={styles.imersaoSub}>Um dia no meu consultório</span>
+            <span className={styles.presencialSub}>No meu consultório</span>
           </span>
         </a>
 
