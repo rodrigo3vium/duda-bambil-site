@@ -36,8 +36,9 @@ npm run test:watch # vitest em watch
 ```
 app/
   layout.tsx                    # layout raiz: fontes, <html lang="pt-BR">, metadata/OpenGraph
-  page.tsx                      # Home — usa classes globais (.header, .hero, ...) de globals.css
-  globals.css                   # estilos globais + estilos da Home
+  page.tsx                      # Home (link-na-bio) — CSS Module em home.module.css
+  home.module.css               # estilos da Home (paleta nude + cacau)
+  globals.css                   # estilos globais (as classes da Home antiga — .hero, .produtos, .contato… — ficaram sem uso)
   gerenciamento-de-pele/        # Curso de Gerenciamento de Pele (público: profissionais)
     page.tsx
     styles.module.css
@@ -95,7 +96,7 @@ vercel.json                     # framework: nextjs
 
 A estilização hoje é **mista** — fique atento a qual padrão cada página usa:
 
-- **Home (`/`)**: classes globais escritas à mão em `app/globals.css` (ex.: `.header`, `.hero`, `.container`).
+- **Home (`/`)**: **CSS Module** em `app/home.module.css` (formato link-na-bio; tokens nude/cacau redefinidos em `.page`, como nas LPs). As classes globais da Home antiga em `app/globals.css` (`.hero`, `.produtos`, `.contato`…) não são mais usadas.
 - **CSS Modules** (`styles.module.css`): usado em `gerenciamento-de-pele` e `guia-primeiros-passos`. Importe como `import styles from "./styles.module.css"` e use `className={styles.nomeDaClasse}`.
 - **CSS co-locado** (`guia-skin-care/styles.css`): CSS comum, não-module.
 - **Tailwind + shadcn** (`/comece` e `components/`): SÓ no Direcionador. O Tailwind é **escopado** — `content` no `tailwind.config.ts` varre só `app/comece/**` e `components/**`, e o CSS (com preflight) é importado apenas em `app/comece/layout.tsx`. Por isso **não afeta** as páginas em CSS puro/Modules. Ao mexer no `/comece`, use classes Tailwind + os tokens de `comece.css`; **não** traga Tailwind pro resto do site sem falar com o Rodrigo.
@@ -108,7 +109,7 @@ Ao editar uma página, **siga o padrão que ela já usa**. Reutilize as variáve
 - **Server vs Client:** Server Components por padrão. Use `"use client"` só quando precisar de interatividade/estado (ex.: `LeadForm.tsx`).
 - **Componentes:** PascalCase em `.tsx`. Hoje componentes ficam co-locados na pasta da rota (ex.: `LeadForm.tsx`); não há `components/` compartilhado ainda.
 - **SEO:** defina `metadata` por rota. O `layout.tsx` raiz já configura title/description/OpenGraph.
-- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [app/page.tsx](app/page.tsx)) já está preenchido. Ainda falta o link da **Imersão Wonderskin** (`LINKS.wonderskin` = `"#"`) e o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)). Substituir pelo valor real antes de publicar mudanças relacionadas.
+- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [app/page.tsx](app/page.tsx)) já está preenchido. Ainda falta o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)). Os **Cursos presenciais** da Home não têm página: o card abre o WhatsApp com mensagem pronta (`LINKS.cursosPresenciais`). Substituir pelo valor real antes de publicar mudanças relacionadas.
 - **Testes:** suíte em [tests/](tests/) rodando no **Vitest** (jsdom + Testing Library). Lógica de negócio nova (validação, route handler) entra com teste. Config em [vitest.config.ts](vitest.config.ts).
 - **Triagem da mentoria é humana:** a `/mentoria` **não** pontua, não classifica e não bifurca o desfecho — toda aplicação válida vai igual pra planilha e a equipe decide. Decisão do Rodrigo em 06/08/2026, que substituiu uma régua de score automática. Se pedirem "qualificar o lead", isso é trabalho da equipe, não do código.
 
