@@ -68,7 +68,9 @@ app/
     chat/route.ts               # agente de IA (Edge, streaming SSE, OpenAI) — key PENDENTE
     lead/route.ts               # captura de lead → webhook (planilha) OU log
     mentoria/route.ts           # aplicação da mentoria: revalida e encaminha (retry). NÃO classifica
-components/                     # compartilhado do /comece: bio/* + ui/{button,input}
+components/                     # CheckoutLink + WhatsAppLink (todo o site) + /comece: bio/* + ui/{button,input}
+contexts/AttributionProvider.tsx # captura de origem global (montado no layout raiz)
+lib/attribution.ts              # núcleo da atribuição: first/last touch, TTL, migração
 config/bio.config.ts            # TODO o conteúdo do /comece (marca, produtos, prompt do agente)
 utils/  hooks/  lib/            # helpers do /comece (bioChat, bioLead, useUTMParams, cn, ...)
 tailwind.config.ts              # Tailwind escopado (content: só app/comece + components)
@@ -78,6 +80,10 @@ vercel.json                     # framework: nextjs
 ```
 
 > Detalhes do Direcionador `/comece` (arquitetura, env vars, pendências): ver [docs/comece-direcionador.md](docs/comece-direcionador.md).
+>
+> Atribuição de tráfego (o que é gravado, formato do `sck`, eventos de pixel, regra do `<CheckoutLink>`): ver [docs/atribuicao.md](docs/atribuicao.md).
+>
+> Botões de WhatsApp (tabela mensagem pronta → botão, onde ver os cliques no Meta e no Clarity): ver [docs/whatsapp-botoes.md](docs/whatsapp-botoes.md).
 
 ### Rotas
 
@@ -109,7 +115,9 @@ Ao editar uma página, **siga o padrão que ela já usa**. Reutilize as variáve
 - **Server vs Client:** Server Components por padrão. Use `"use client"` só quando precisar de interatividade/estado (ex.: `LeadForm.tsx`).
 - **Componentes:** PascalCase em `.tsx`. Hoje componentes ficam co-locados na pasta da rota (ex.: `LeadForm.tsx`); não há `components/` compartilhado ainda.
 - **SEO:** defina `metadata` por rota. O `layout.tsx` raiz já configura title/description/OpenGraph.
-- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [app/page.tsx](app/page.tsx)) já está preenchido. Ainda falta o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)). Os **Cursos presenciais** da Home não têm página: o card abre o WhatsApp com mensagem pronta (`LINKS.cursosPresenciais`). Substituir pelo valor real antes de publicar mudanças relacionadas.
+- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [utils/whatsappBotoes.ts](utils/whatsappBotoes.ts)) já está preenchido. Ainda falta o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)). Os **Cursos presenciais** da Home não têm página: o card abre o WhatsApp com mensagem pronta (botão `home-cursos-presenciais`). Substituir pelo valor real antes de publicar mudanças relacionadas.
+- **WhatsApp:** **nenhum link `wa.me` escrito à mão.** Botão de WhatsApp sai só por `<WhatsAppLink botao="…">`, e cada botão tem a **sua** mensagem pronta em [utils/whatsappBotoes.ts](utils/whatsappBotoes.ts) (sempre "Oi, Duda! Vim pelo seu site e…" + frase exclusiva) — é pela mensagem que a equipe sabe de qual botão a pessoa veio. O clique dispara `Contact` no pixel e evento no Clarity. Mudou/criou mensagem → atualizar a tabela em [docs/whatsapp-botoes.md](docs/whatsapp-botoes.md). Um teste de guarda falha se aparecer `wa.me` cru em `app/` ou `components/`.
+- **Atribuição e checkout:** a origem é capturada UMA vez pelo `AttributionProvider` (layout raiz) e lida por todo mundo de [lib/attribution.ts](lib/attribution.ts). **Nenhum `<a href={CHECKOUT_URL}>` cru**: link de checkout sai só por `<CheckoutLink>` (âncora) ou `openCheckout()` (clique programático) — eles carimbam utm/sck/s1-s3 na URL da Kiwify e disparam `InitiateCheckout`. Formulário novo manda `flattenAttribution(useAttribution())` no payload e chama `trackLead()` no sucesso. Detalhes em [docs/atribuicao.md](docs/atribuicao.md).
 - **Testes:** suíte em [tests/](tests/) rodando no **Vitest** (jsdom + Testing Library). Lógica de negócio nova (validação, route handler) entra com teste. Config em [vitest.config.ts](vitest.config.ts).
 - **Triagem da mentoria é humana:** a `/mentoria` **não** pontua, não classifica e não bifurca o desfecho — toda aplicação válida vai igual pra planilha e a equipe decide. Decisão do Rodrigo em 06/08/2026, que substituiu uma régua de score automática. Se pedirem "qualificar o lead", isso é trabalho da equipe, não do código.
 

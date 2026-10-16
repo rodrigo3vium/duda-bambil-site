@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Script from "next/script";
+import { AttributionProvider } from "@/contexts/AttributionProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -35,7 +36,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        {children}
+        {/*
+          AttributionProvider envolve TODA a árvore: qualquer rota que receba a
+          pessoa captura utm/click id/referrer no primeiro render. Ver
+          docs/atribuicao.md.
+        */}
+        <AttributionProvider>{children}</AttributionProvider>
         <noscript>
           <img
             height="1"

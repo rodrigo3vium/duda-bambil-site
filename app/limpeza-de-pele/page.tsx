@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./styles.module.css";
+import { CheckoutLink } from "@/components/CheckoutLink";
 
 export const metadata: Metadata = {
   title: "Curso de Limpeza de Pele — Duda Bambil",
@@ -394,12 +395,14 @@ export default function LimpezaDePelePage() {
               ))}
             </ul>
 
-            <a
+            <CheckoutLink
               href={CHECKOUT_URL}
               className={`${styles.cta} ${styles.ctaLight}`}
+              produto="curso-limpeza"
+              origem="lp-limpeza-oferta"
             >
               Quero garantir minha vaga
-            </a>
+            </CheckoutLink>
 
             <p className={styles.garantia}>
               Acesso imediato · Pagamento único ou parcelado · Garantia
@@ -523,9 +526,14 @@ export default function LimpezaDePelePage() {
             o seu talento. <em>É o seu método.</em>
           </h2>
           <p>Você já tem a mão. Falta o critério.</p>
-          <a href={CHECKOUT_URL} className={`${styles.cta} ${styles.ctaLight}`}>
+          <CheckoutLink
+            href={CHECKOUT_URL}
+            className={`${styles.cta} ${styles.ctaLight}`}
+            produto="curso-limpeza"
+            origem="lp-limpeza-final"
+          >
             Começar agora — R$197
-          </a>
+          </CheckoutLink>
           <p className={styles.finalMeta}>
             Acesso imediato · Vitalício · 7 dias de garantia
           </p>

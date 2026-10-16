@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import AplicacaoForm from "@/app/mentoria/AplicacaoForm";
+import { __resetAttributionStore } from "@/lib/attribution";
 
 type User = ReturnType<typeof userEvent.setup>;
 
@@ -17,7 +18,11 @@ function respostaOk() {
 beforeEach(() => {
   fetchMock = vi.fn().mockResolvedValue(respostaOk());
   vi.stubGlobal("fetch", fetchMock);
-  sessionStorage.clear();
+  window.sessionStorage.clear();
+  window.localStorage.clear();
+  // O store de atribuição é singleton de módulo (uma carga de página = uma
+  // captura). Entre testes, resetar simula a carga nova.
+  __resetAttributionStore();
 });
 
 afterEach(() => {
@@ -388,8 +393,10 @@ describe("envio", () => {
     );
   });
 
-  it("envia as UTMs guardadas na sessão", async () => {
-    sessionStorage.setItem(
+  // O form não lê mais `mentoria_utm` direto: quem lê é o lib/attribution.ts,
+  // que MIGRA a chave antiga pro formato único (ver tests/atribuicao/).
+  it("envia as UTMs guardadas na sessão (migradas do formato antigo)", async () => {
+    window.sessionStorage.setItem(
       "mentoria_utm",
       JSON.stringify({ utm_source: "instagram", utm_campaign: "mentoria-set" }),
     );
@@ -403,6 +410,11 @@ describe("envio", () => {
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
     const enviado = JSON.parse((fetchMock.mock.calls[0][1] as RequestInit).body as string);
     expect(enviado.utm).toMatchObject({
+      utm_source: "instagram",
+      utm_campaign: "mentoria-set",
+    });
+    // e o schema achatado (o que vai virar coluna na planilha) leva o mesmo
+    expect(enviado.atribuicao).toMatchObject({
       utm_source: "instagram",
       utm_campaign: "mentoria-set",
     });

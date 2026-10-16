@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useAttribution } from '@/contexts/AttributionProvider';
+import { flattenAttribution, utmBagFromAttribution } from '@/lib/attribution';
+import { trackLead } from '@/utils/pixel';
 import styles from './styles.module.css';
 
 const EBOOK_URL = 'https://www.canva.com/design/DAHK3nPuh9U/BnsDbLnAqj5Bx-CbcJsWxA/edit';
@@ -19,6 +22,7 @@ function maskWhatsapp(raw: string): string {
 }
 
 export default function LeadForm() {
+  const attribution = useAttribution();
   const [values, setValues] = useState<FormValues>({ nome: '', whatsapp: '', email: '' });
   const [errors, setErrors] = useState<FormErrors>({ nome: false, whatsapp: false, email: false });
   const [loading, setLoading] = useState(false);
@@ -44,12 +48,16 @@ export default function LeadForm() {
 
     setLoading(true);
 
+    // Mesmo schema achatado que /api/mentoria manda pra planilha — uma
+    // planilha só, um conjunto de colunas só. Ver docs/atribuicao.md.
     const payload = {
       nome: values.nome.trim(),
       whatsapp: values.whatsapp.replace(/\D/g, ''),
       email: values.email.trim().toLowerCase(),
       origem: 'lp-guia-primeiros-passos',
       timestamp: new Date().toISOString(),
+      utm: utmBagFromAttribution(attribution),
+      ...flattenAttribution(attribution),
     };
 
     try {
@@ -63,6 +71,11 @@ export default function LeadForm() {
     } catch (err) {
       console.warn('Falha ao registrar lead, prosseguindo com download:', err);
     }
+
+    trackLead({
+      content_name: 'guia-primeiros-passos',
+      content_category: 'lp-guia-primeiros-passos',
+    });
 
     setSuccess(true);
 

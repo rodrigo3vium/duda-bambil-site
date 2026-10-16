@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { CheckoutLink } from "@/components/CheckoutLink";
 
 export const metadata: Metadata = {
   title: 'Guia Editável de Skincare — Duda Bambil',
@@ -222,7 +223,9 @@ export default function GuiaSkinCare() {
               <div className="valor"><sup>R$</sup>47</div>
               <div className="obs">Pagamento único · Acesso imediato</div>
             </div>
-            <a href={CHECKOUT_URL} className="cta">Quero meu acesso agora</a>
+            <CheckoutLink href={CHECKOUT_URL} className="cta" produto="guia-editavel" origem="lp-guia-skincare-oferta">
+              Quero meu acesso agora
+            </CheckoutLink>
             <p className="garantia-mini">
               Garantia de 7 dias. Acesse, teste no próximo atendimento, e se não fizer sentido —
               devolvo seu dinheiro.
@@ -293,7 +296,9 @@ export default function GuiaSkinCare() {
             Você decide se quer continuar fazendo material no improviso ou começar a entregar
             atendimento profissional desde a próxima paciente.
           </p>
-          <a href={CHECKOUT_URL} className="cta cta-light">Quero meu guia agora</a>
+          <CheckoutLink href={CHECKOUT_URL} className="cta cta-light" produto="guia-editavel" origem="lp-guia-skincare-final">
+            Quero meu guia agora
+          </CheckoutLink>
           <p className="meta">Acesso imediato · Garantia de 7 dias · Atualizações inclusas</p>
         </div>
       </section>

@@ -44,8 +44,24 @@ const UTM_KEYS = [
 interface CorpoRequisicao extends Partial<Aplicacao> {
   empresa?: string; // honeypot — humano nunca preenche (campo invisível)
   tempoPreenchimentoMs?: number;
+  /** bag de utms do last touch (formato antigo, ainda aceito) */
   utm?: Record<string, string | null>;
+  /** atribuição achatada (lib/attribution.ts:flattenAttribution) — formato atual */
+  atribuicao?: Record<string, string | null>;
   referrer?: string;
+}
+
+/** Só strings/null entram na planilha: objeto aninhado viraria "[object Object]". */
+function apenasEscalares(
+  bruto: Record<string, unknown> | undefined,
+): Record<string, string | null> {
+  const saida: Record<string, string | null> = {};
+  if (!bruto || typeof bruto !== "object") return saida;
+  for (const [chave, valor] of Object.entries(bruto)) {
+    if (typeof valor === "string") saida[chave] = valor;
+    else if (valor === null || valor === undefined) saida[chave] = null;
+  }
+  return saida;
 }
 
 export async function POST(req: Request): Promise<Response> {
@@ -83,13 +99,19 @@ export async function POST(req: Request): Promise<Response> {
     );
   }
 
+  // Atribuição: o form manda `atribuicao` (schema achatado, com first e last
+  // touch). O `utm` cru continua aceito — payload antigo não pode quebrar.
   const utm = corpo.utm ?? {};
+  const atribuicao = apenasEscalares(corpo.atribuicao);
   const payload = {
     ...valores,
     origem: "mentoria-aplicacao",
     submitted_at: new Date().toISOString(),
     ...Object.fromEntries(UTM_KEYS.map((k) => [k, utm[k] ?? null])),
-    referrer: typeof corpo.referrer === "string" ? corpo.referrer : "",
+    ...atribuicao,
+    referrer:
+      atribuicao.referrer ??
+      (typeof corpo.referrer === "string" ? corpo.referrer : ""),
   };
 
   await encaminhar(payload);

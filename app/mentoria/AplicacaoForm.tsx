@@ -10,7 +10,9 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { useUTMParams } from "@/hooks/useUTMParams";
+import { useAttribution } from "@/contexts/AttributionProvider";
+import { flattenAttribution, utmBagFromAttribution } from "@/lib/attribution";
+import { trackLead } from "@/utils/pixel";
 import {
   ATUACAO_OPCOES,
   FATURAMENTO_OPCOES,
@@ -39,7 +41,9 @@ export default function AplicacaoForm() {
   const [enviado, setEnviado] = useState(false);
   const [honeypot, setHoneypot] = useState("");
 
-  const utm = useUTMParams({ storage: "session", key: "mentoria_utm" });
+  // Atribuição global (AttributionProvider) — o antigo sessionStorage
+  // `mentoria_utm` é migrado uma vez pelo lib/attribution.ts.
+  const attribution = useAttribution();
 
   const blocoRef = useRef<HTMLDivElement>(null);
   const tituloRef = useRef<HTMLParagraphElement>(null);
@@ -129,7 +133,8 @@ export default function AplicacaoForm() {
           tempoPreenchimentoMs: inicioRef.current
             ? Date.now() - inicioRef.current
             : 0,
-          utm,
+          utm: utmBagFromAttribution(attribution),
+          atribuicao: flattenAttribution(attribution),
           referrer: typeof document !== "undefined" ? document.referrer : "",
         }),
       });
@@ -143,6 +148,7 @@ export default function AplicacaoForm() {
         return;
       }
 
+      trackLead({ content_name: "mentoria", content_category: "mentoria-aplicacao" });
       setEnviado(true);
       rolarParaTopoDoBloco();
     } catch {

@@ -5,24 +5,17 @@
 
 import Image from "next/image";
 import { Instagram } from "lucide-react";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
 import styles from "./home.module.css";
 
-// WhatsApp comercial da Duda Bambil: +55 67 99856-8757
-const WHATSAPP_NUMERO = "5567998568757";
-
-const whatsappCom = (mensagem: string) =>
-  `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
-
+// Os botões de WhatsApp (número e mensagem pronta de cada um) vivem em
+// utils/whatsappBotoes.ts — cada botão tem a sua mensagem, pra equipe saber
+// de onde a pessoa veio. Os Cursos presenciais ainda não têm página: o
+// interesse cai no WhatsApp.
 const LINKS = {
-  whatsappAgendamento: whatsappCom("Oi, Duda! Quero agendar um horário."),
-  // Ainda não há página dos cursos presenciais: o interesse cai no WhatsApp.
-  cursosPresenciais: whatsappCom(
-    "Oi, Duda! Quero saber dos cursos presenciais."
-  ),
   curso: "/gerenciamento-de-pele",
   limpeza: "/limpeza-de-pele",
   guia: "/guia-skin-care",
-  whatsapp: `https://wa.me/${WHATSAPP_NUMERO}`,
   instagram: "https://instagram.com/dudabambill",
 };
 
@@ -68,10 +61,8 @@ export default function Home() {
         </header>
 
         {/* AGENDAMENTO (paciente) */}
-        <a
-          href={LINKS.whatsappAgendamento}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
+          botao="home-agendar"
           className={`${styles.card} ${styles.agendar}`}
         >
           <span className={styles.whatsBadge}>
@@ -80,7 +71,7 @@ export default function Home() {
           <span className={styles.agendarEyebrow}>Para você, paciente</span>
           <span className={styles.agendarTitle}>Agende seu horário</span>
           <span className={styles.pill}>Quero agendar</span>
-        </a>
+        </WhatsAppLink>
 
         <p className={styles.groupLabel}>Para profissionais</p>
 
@@ -113,10 +104,8 @@ export default function Home() {
         </a>
 
         {/* CURSOS PRESENCIAIS — banner com foto */}
-        <a
-          href={LINKS.cursosPresenciais}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
+          botao="home-cursos-presenciais"
           className={`${styles.card} ${styles.banner} ${styles.presencial}`}
         >
           <span className={styles.presencialPhoto}>
@@ -137,7 +126,7 @@ export default function Home() {
             </span>
             <span className={styles.presencialSub}>No meu consultório</span>
           </span>
-        </a>
+        </WhatsAppLink>
 
         {/* GUIA — banner claro */}
         <a
@@ -166,15 +155,13 @@ export default function Home() {
             >
               <Instagram className={styles.socialIcon} strokeWidth={1.6} />
             </a>
-            <a
-              href={LINKS.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
+            <WhatsAppLink
+              botao="home-rodape"
               className={styles.social}
               aria-label="WhatsApp"
             >
               <WhatsAppIcon className={styles.socialIcon} />
-            </a>
+            </WhatsAppLink>
           </div>
           <p className={styles.tagline}>
             Onde saúde e beleza se completam em equilíbrio.

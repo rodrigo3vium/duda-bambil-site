@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "./styles.module.css";
+import { CheckoutLink } from "@/components/CheckoutLink";
 
 export const metadata: Metadata = {
   title: "Curso de Gerenciamento de Pele — Duda Bambil",
@@ -480,12 +481,14 @@ export default function GerenciamentoDePelePage() {
               </div>
             </div>
 
-            <a
+            <CheckoutLink
               href={CHECKOUT_URL}
               className={`${styles.cta} ${styles.ctaLight}`}
+              produto="curso-gerenciamento"
+              origem="lp-gerenciamento-oferta"
             >
               Quero meu acesso agora
-            </a>
+            </CheckoutLink>
 
             <p className={styles.garantia}>
               Garantia incondicional de 7 dias. Se você assistir, aplicar e não
@@ -591,9 +594,14 @@ export default function GerenciamentoDePelePage() {
             O preço da inação não é R$297. É outro ano cobrando R$80 por uma
             limpeza enquanto biomédica do lado fatura 10 vezes mais.
           </p>
-          <a href={CHECKOUT_URL} className={`${styles.cta} ${styles.ctaLight}`}>
+          <CheckoutLink
+            href={CHECKOUT_URL}
+            className={`${styles.cta} ${styles.ctaLight}`}
+            produto="curso-gerenciamento"
+            origem="lp-gerenciamento-final"
+          >
             Quero começar agora
-          </a>
+          </CheckoutLink>
           <p className={styles.finalMeta}>
             Acesso vitalício · Garantia de 7 dias · 12x de R$28,72
           </p>
