@@ -1,0 +1,58 @@
+/**
+ * Estilos do Direcionador (/comece) — Tailwind + design tokens da Duda.
+ *
+ * IMPORTANTE: este arquivo é importado SÓ no layout de /comece
+ * (app/comece/layout.tsx), então o `@tailwind base` (preflight) e os tokens
+ * abaixo ficam ESCOPADOS às rotas /comece. As páginas existentes do site
+ * (home, curso, guias) NÃO são afetadas.
+ *
+ * Paleta = a mesma do site da Duda (dark editorial + dourado), mapeada nos
+ * tokens shadcn que os componentes usam (--primary, --card, --accent, etc.).
+ * As fontes reusam as variáveis do next/font já expostas no <html>
+ * (--font-serif = Playfair Display, --font-sans = Inter).
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Fundo quase-preto quente (#0e0d0b) */
+    --background: 40 13% 5%;
+    --foreground: 39 39% 93%; /* creme #f4efe6 */
+
+    /* Superfícies de card (#1f1c18) */
+    --card: 34 13% 11%;
+    --card-foreground: 39 39% 93%;
+
+    --popover: 34 13% 11%;
+    --popover-foreground: 39 39% 93%;
+
+    /* Dourado da marca (#c9a06b) — headings, botões, destaques */
+    --primary: 34 47% 60%;
+    --primary-foreground: 36 30% 8%;
+
+    --secondary: 34 47% 60%;
+    --secondary-foreground: 36 30% 8%;
+
+    --muted: 36 12% 12%;
+    --muted-foreground: 40 12% 62%;
+
+    --accent: 34 47% 60%;
+    --accent-foreground: 36 30% 8%;
+
+    --destructive: 0 65% 58%;
+    --destructive-foreground: 39 39% 93%;
+
+    --border: 36 10% 18%;
+    --input: 34 13% 16%;
+    --ring: 34 47% 60%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
