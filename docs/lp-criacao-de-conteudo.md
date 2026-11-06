@@ -14,7 +14,7 @@ sobre a Duda nesta página saiu das aulas ou das LPs já aprovadas — nada inve
 | Preço | R$597 à vista ou parcelado no cartão (sem "De R$") | Rodrigo, 05/11/2026 |
 | Inclusos | Garantia de 7 dias + lista de equipamentos com link | Rodrigo, 05/11/2026 |
 | **NÃO prometer** | acesso vitalício, certificado | Rodrigo não confirmou |
-| Checkout | Kiwify — **link pendente** (`CHECKOUT_URL` provisório) | Rodrigo vai mandar |
+| Checkout | `https://pay.kiwify.com.br/0oKeqVO` (produto "Conteúdo que vende" na Kiwify) | painel da Kiwify, 06/11/2026 |
 | Visual | Mesmo design system da `/limpeza-de-pele` (bege/preto, Playfair + Inter), CSS Module próprio da rota | padrão do repo |
 | Rastreio | `<CheckoutLink produto="curso-conteudo" origem="lp-conteudo-oferta" / "lp-conteudo-final">` | regra do repo |
 
@@ -206,5 +206,5 @@ Pisos de leitura aplicados (skill ux-pagina): corpo 18px/400, entrelinha 1.7, te
 
 ## Pendências antes de publicar
 
-- [ ] Link de checkout da Kiwify (`CHECKOUT_URL` em `app/criacao-de-conteudo/config.ts`)
+- [x] Link de checkout da Kiwify (`CHECKOUT_URL` em `app/criacao-de-conteudo/config.ts`)
 - [ ] (opcional) Valor da parcela, se quiser mostrar

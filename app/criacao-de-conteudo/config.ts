@@ -4,9 +4,8 @@
  * dela (default, metadata…) — e o teste precisa ler estes valores.
  */
 
-// TODO(checkout): link provisório. Trocar pelo link real da Kiwify antes de
-// publicar — o Rodrigo vai mandar (o produto já existe na Kiwify).
-export const CHECKOUT_URL = "https://pay.kiwify.com.br/PENDENTE-curso-conteudo";
+/** Checkout do produto "Conteúdo que vende" na Kiwify (R$597, link do tipo Checkout). */
+export const CHECKOUT_URL = "https://pay.kiwify.com.br/0oKeqVO";
 
 /** Preço à vista. O valor da parcela não aparece: depende da config da Kiwify. */
 export const PRECO = "R$597";
