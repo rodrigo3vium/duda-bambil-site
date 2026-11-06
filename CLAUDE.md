@@ -45,6 +45,11 @@ app/
   limpeza-de-pele/              # Curso de Limpeza de Pele — LP de venda (público: profissionais)
     page.tsx
     styles.module.css
+  criacao-de-conteudo/          # Curso de Criação de Conteúdo para Estética — LP de venda (público: profissionais)
+    page.tsx                    # spec + copy aprovada em docs/lp-criacao-de-conteudo.md
+    config.ts                   # CHECKOUT_URL (PROVISÓRIO) + PRECO
+    SectionNav.tsx              # índice fixo das seções + barra de progresso (client component)
+    styles.module.css           # design system das LPs + pisos de leitura da skill ux-pagina
   mentoria/                     # Mentoria R$4.000 — página de APLICAÇÃO (público: profissionais)
     page.tsx                    # LP; form sempre no fim. Cabeçalho lista os placeholders
     AplicacaoForm.tsx           # form multi-step (3 telas), client component
@@ -92,6 +97,7 @@ vercel.json                     # framework: nextjs
 | `/` | Home | Pacientes + profissionais |
 | `/gerenciamento-de-pele` | Curso de Gerenciamento de Pele | Profissionais |
 | `/limpeza-de-pele` | Curso de Limpeza de Pele (LP de venda) | Profissionais |
+| `/criacao-de-conteudo` | Curso de Criação de Conteúdo para Estética (LP de venda, R$597) | Profissionais |
 | `/guia-skin-care` | Guia Editável de Skincare | Geral |
 | `/guia-primeiros-passos` | Guia + captura de lead | Geral |
 | `/mentoria` | Aplicação da Mentoria (R$4.000) — coleta a aplicação; **triagem é manual, feita pela equipe** | Profissionais |
@@ -103,7 +109,7 @@ vercel.json                     # framework: nextjs
 A estilização hoje é **mista** — fique atento a qual padrão cada página usa:
 
 - **Home (`/`)**: **CSS Module** em `app/home.module.css` (formato link-na-bio; tokens nude/cacau redefinidos em `.page`, como nas LPs). As classes globais da Home antiga em `app/globals.css` (`.hero`, `.produtos`, `.contato`…) não são mais usadas.
-- **CSS Modules** (`styles.module.css`): usado em `gerenciamento-de-pele` e `guia-primeiros-passos`. Importe como `import styles from "./styles.module.css"` e use `className={styles.nomeDaClasse}`.
+- **CSS Modules** (`styles.module.css`): usado em `gerenciamento-de-pele`, `limpeza-de-pele`, `criacao-de-conteudo`, `mentoria` e `guia-primeiros-passos`. A `criacao-de-conteudo` segue o mesmo design system das outras LPs, mas com os pisos de leitura da skill ux-pagina (corpo 18px/400, linha ≤ 60ch, `--ink-mute` mais escuro pra passar no contraste AA) — os desvios estão listados no topo do CSS dela. Importe como `import styles from "./styles.module.css"` e use `className={styles.nomeDaClasse}`.
 - **CSS co-locado** (`guia-skin-care/styles.css`): CSS comum, não-module.
 - **Tailwind + shadcn** (`/comece` e `components/`): SÓ no Direcionador. O Tailwind é **escopado** — `content` no `tailwind.config.ts` varre só `app/comece/**` e `components/**`, e o CSS (com preflight) é importado apenas em `app/comece/layout.tsx`. Por isso **não afeta** as páginas em CSS puro/Modules. Ao mexer no `/comece`, use classes Tailwind + os tokens de `comece.css`; **não** traga Tailwind pro resto do site sem falar com o Rodrigo.
 
@@ -115,7 +121,7 @@ Ao editar uma página, **siga o padrão que ela já usa**. Reutilize as variáve
 - **Server vs Client:** Server Components por padrão. Use `"use client"` só quando precisar de interatividade/estado (ex.: `LeadForm.tsx`).
 - **Componentes:** PascalCase em `.tsx`. Hoje componentes ficam co-locados na pasta da rota (ex.: `LeadForm.tsx`); não há `components/` compartilhado ainda.
 - **SEO:** defina `metadata` por rota. O `layout.tsx` raiz já configura title/description/OpenGraph.
-- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [utils/whatsappBotoes.ts](utils/whatsappBotoes.ts)) já está preenchido. Ainda falta o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)). Os **Cursos presenciais** da Home não têm página: o card abre o WhatsApp com mensagem pronta (botão `home-cursos-presenciais`). Substituir pelo valor real antes de publicar mudanças relacionadas.
+- **Links/placeholders:** o WhatsApp comercial da Duda (**+55 67 99856-8757** → `WHATSAPP_NUMERO` em [utils/whatsappBotoes.ts](utils/whatsappBotoes.ts)) já está preenchido. Ainda falta o vídeo da mentoria (`MENTORIA_VIDEO_URL` em [app/mentoria/config.ts](app/mentoria/config.ts)) e o link de checkout do curso de conteúdo (`CHECKOUT_URL` em [app/criacao-de-conteudo/config.ts](app/criacao-de-conteudo/config.ts) — hoje é provisório e cai num 404 da Kiwify). Os **Cursos presenciais** da Home não têm página: o card abre o WhatsApp com mensagem pronta (botão `home-cursos-presenciais`). Substituir pelo valor real antes de publicar mudanças relacionadas.
 - **WhatsApp:** **nenhum link `wa.me` escrito à mão.** Botão de WhatsApp sai só por `<WhatsAppLink botao="…">`, e cada botão tem a **sua** mensagem pronta em [utils/whatsappBotoes.ts](utils/whatsappBotoes.ts) (sempre "Oi, Duda! Vim pelo seu site e…" + frase exclusiva) — é pela mensagem que a equipe sabe de qual botão a pessoa veio. O clique dispara `Contact` no pixel e evento no Clarity. Mudou/criou mensagem → atualizar a tabela em [docs/whatsapp-botoes.md](docs/whatsapp-botoes.md). Um teste de guarda falha se aparecer `wa.me` cru em `app/` ou `components/`.
 - **Atribuição e checkout:** a origem é capturada UMA vez pelo `AttributionProvider` (layout raiz) e lida por todo mundo de [lib/attribution.ts](lib/attribution.ts). **Nenhum `<a href={CHECKOUT_URL}>` cru**: link de checkout sai só por `<CheckoutLink>` (âncora) ou `openCheckout()` (clique programático) — eles carimbam utm/sck/s1-s3 na URL da Kiwify e disparam `InitiateCheckout`. Formulário novo manda `flattenAttribution(useAttribution())` no payload e chama `trackLead()` no sucesso. Detalhes em [docs/atribuicao.md](docs/atribuicao.md).
 - **Testes:** suíte em [tests/](tests/) rodando no **Vitest** (jsdom + Testing Library). Lógica de negócio nova (validação, route handler) entra com teste. Config em [vitest.config.ts](vitest.config.ts).
